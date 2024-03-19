@@ -10,10 +10,11 @@ import shop.mtcoding.blog.user.User;
 
 import java.sql.Timestamp;
 
-@NoArgsConstructor
-@Data
+
 @Table(name = "reply_tb")
 @Entity
+@NoArgsConstructor
+@Data
 public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +26,9 @@ public class Reply {
     private Board board;
     @CreationTimestamp
     private Timestamp createdAt;
+    @Transient
+    private boolean isReplyOwner;
+
 
     @Builder
     public Reply(Integer id, String comment, User user, Board board, Timestamp createdAt) {
