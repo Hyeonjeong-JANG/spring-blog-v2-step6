@@ -65,14 +65,14 @@ public class BoardService {
         Board board = boardJPARepository.findByIdJoinUser(boardId)
                 .orElseThrow(() -> new Exception404("게시글을 찾을 수 없습니다"));
 
-        boolean isOwner = false;
+        boolean isBoardOwner = false;
         if(sessionUser != null){
             if(sessionUser.getId() == board.getUser().getId()){
-                isOwner = true;
+                isBoardOwner = true;
             }
         }
 
-        board.setOwner(isOwner);
+        board.setBoardOwner(isBoardOwner);
 
         return board;
     }
