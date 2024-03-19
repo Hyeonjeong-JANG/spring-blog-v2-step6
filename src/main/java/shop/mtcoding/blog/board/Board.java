@@ -32,6 +32,7 @@ public class Board {
     @CreationTimestamp // pc -> db (날짜주입)
     private Timestamp createdAt;
 
+    @OrderBy("id desc")
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade =CascadeType.REMOVE ) // 여기서의 board는 Reply Entity에 private Board board; 얘다.
     private List<Reply> replies = new ArrayList<>();
     @Transient // 테이블 생성이 안됨
