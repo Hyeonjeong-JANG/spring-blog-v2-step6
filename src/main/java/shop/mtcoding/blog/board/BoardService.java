@@ -74,6 +74,16 @@ public class BoardService {
 
         board.setBoardOwner(isBoardOwner);
 
+        board.getReplies().forEach(reply -> {
+            boolean isReplyOwner =false;
+
+            if (sessionUser!=null){
+                if (reply.getUser().getId()==sessionUser.getId()){
+                    isReplyOwner=true;
+                }
+            }
+            reply.setReplyOwner(isReplyOwner);
+        });
         return board;
     }
 }

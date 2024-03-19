@@ -25,7 +25,8 @@ public class Reply {
     private Board board;
     @CreationTimestamp
     private Timestamp createdAt;
-
+    @Transient // 테이블 생성이 안됨
+    private boolean isReplyOwner;
     @Builder
 
     public Reply(Integer id, String comment, User user, Board board, Timestamp createdAt) {
