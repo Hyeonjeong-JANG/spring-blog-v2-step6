@@ -2,7 +2,7 @@
 
 <div class="container p-5">
 
-    {{#board.isOwner}}
+    {{#board.boardOwner}}
         <!-- 수정삭제버튼 -->
         <div class="d-flex justify-content-end">
             <a href="/board/{{board.id}}/update-form" class="btn btn-warning me-1">수정</a>
@@ -10,7 +10,7 @@
                 <button class="btn btn-danger">삭제</button>
             </form>
         </div>
-    {{/board.isOwner}}
+    {{/board.boardOwner}}
 
     <div class="d-flex justify-content-end">
         <b>작성자</b> : {{board.user.username}}
@@ -30,6 +30,7 @@
         <!-- 댓글등록 -->
         <div class="card-body">
             <form action="/reply/save" method="post">
+                <input type="hidden" name="boardId" value="{{board.id}}">
                 <textarea class="form-control" rows="2" name="comment"></textarea>
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-outline-primary mt-1">댓글등록</button>
@@ -48,9 +49,11 @@
                         <div class="px-1 me-1 bg-primary text-white rounded">{{user.username}}</div>
                         <div>{{comment}}</div>
                     </div>
-                    <form action="/reply/{{id}}/delete" method="post">
-                        <button class="btn">🗑</button>
-                    </form>
+                    {{#replyOwner}}
+                        <form action="/reply/{{id}}/delete" method="post">
+                            <button class="btn">🗑</button>
+                        </form>
+                    {{/replyOwner}}
                 </div>
             {{/board.replies}}
         </div>
