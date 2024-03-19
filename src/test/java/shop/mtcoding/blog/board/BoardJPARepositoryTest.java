@@ -19,6 +19,19 @@ public class BoardJPARepositoryTest {
     @Autowired
     private EntityManager em;
 
+    @Test
+    public void findByIdJoinUsernameAndReplies_test() {
+        // given
+        int id = 4;
+
+        // when
+        Board board = boardJPARepository.findByIdJoinUserAndReplies(id).get();
+
+        // then
+
+
+    }
+
     // save
     @Test
     public void save_test() {
@@ -34,21 +47,21 @@ public class BoardJPARepositoryTest {
         boardJPARepository.save(board);
 
         // then
-        System.out.println("save_test : id : "+board.getId());
+        System.out.println("save_test : id : " + board.getId());
     }
 
     // findById
     @Test
-    public void findById_test(){
+    public void findById_test() {
         // given
         int id = 1;
 
         // when
         Optional<Board> boardOP = boardJPARepository.findById(id);
 
-        if(boardOP.isPresent()){
+        if (boardOP.isPresent()) {
             Board board = boardOP.get();
-            System.out.println("findById_test : "+board.getTitle());
+            System.out.println("findById_test : " + board.getTitle());
         }
 
         // then
@@ -56,22 +69,23 @@ public class BoardJPARepositoryTest {
 
     // findByIdJoinUser
     @Test
-    public void findByIdJoinUser_test(){
+    public void findByIdJoinUser_test() {
         // given
         int id = 1;
 
         // when
-        Board board = boardJPARepository.findByIdJoinUser(id);
+//        Optional<Board> board = boardJPARepository.findByIdJoinUser(id);
+        Board board = boardJPARepository.findByIdJoinUser(id).get();
 
         // then
-        System.out.println("findByIdJoinUser_test : "+board.getTitle());
-        System.out.println("findByIdJoinUser_test : "+board.getUser().getUsername());
+        System.out.println("findByIdJoinUser_test : " + board.getTitle());
+        System.out.println("findByIdJoinUser_test : " + board.getUser().getUsername());
     }
 
 
     // findAll (sort)
     @Test
-    public void findAll_test(){
+    public void findAll_test() {
         // given
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
 
@@ -79,12 +93,12 @@ public class BoardJPARepositoryTest {
         List<Board> boardList = boardJPARepository.findAll(sort);
 
         // then
-        System.out.println("findAll_test : "+boardList);
+        System.out.println("findAll_test : " + boardList);
     }
 
     // deleteById
     @Test
-    public void deleteById_test(){
+    public void deleteById_test() {
         // given
         int id = 1;
 

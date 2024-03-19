@@ -65,6 +65,7 @@ public class BoardController {
         Board board = boardService.글상세보기(id, sessionUser);
 
         request.setAttribute("board", board);
+        System.out.println("서버사이드 레너링 직전에는 보드와 유저만 조회된 상태이다~~~~~~~~~~~~~~~~ 이거 찍히고 나서 레이지로딩 된다!!!!!!!!!!!");
         return "board/detail";
     }
 

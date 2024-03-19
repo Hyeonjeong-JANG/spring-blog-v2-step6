@@ -34,3 +34,6 @@ spring:
         format_sql: true
         default_batch_fetch_size: 10
     defer-datasource-initialization: true
+    open-in-view: true
+#    open-in-view: false #뷰를 랜더링 할 때까지 커넥션을 유지하지 않겠다는 뜻. 그러면 lazy loading이 일어나지 않는다. true로 바꾸면 커넥션이 뷰에 갈 때까지 유지된다. 레이지로딩을 신경쓰고 싶지 않다면 조인을 다 하면 된다.
+# 프로젝트 때는 제이슨을 응답할 것이기 때문에 오픈인뷰 끄고 할 것이다.
